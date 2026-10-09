@@ -7,7 +7,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import Replicate from 'replicate';
-
+import cors from 'cors';
+app.use(cors());
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -855,7 +856,7 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
         console.log(`[Replicate GPU] Generation completed. Video URL: ${generatedVideoUrl}`);
       } catch (repErr: any) {
         console.error("🔥 REPLICATE CRITICAL ERROR:", repErr);
-        
+
       }
     }
 
