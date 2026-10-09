@@ -842,7 +842,7 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
       try {
         console.log(`[Replicate GPU] Dispatching prompt to zeroscope-v2-xl: "${prompt.slice(0, 50)}..."`);
         const output: any = await replicate.run("bytedance/minimax-video-01", { input: { prompt: prompt, prompt_optimizer: true } });
-        
+
 
         if (Array.isArray(output) && output.length > 0) {
           generatedVideoUrl = String(output[0]);
@@ -854,7 +854,8 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
 
         console.log(`[Replicate GPU] Generation completed. Video URL: ${generatedVideoUrl}`);
       } catch (repErr: any) {
-        console.warn(`[Replicate Notice] API call failed: ${repErr.message}. Utilizing high-fidelity neural fallback.`);
+        console.error("🔥 REPLICATE CRITICAL ERROR:", repErr);
+        
       }
     }
 
