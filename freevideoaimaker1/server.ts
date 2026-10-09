@@ -843,7 +843,8 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
     if (hasReplicateAuth) {
       try {
         console.log(`[Replicate GPU] Dispatching prompt to zeroscope-v2-xl: "${prompt.slice(0, 50)}..."`);
-        const output: any = await replicate.run("minimax/video-01", { input: { prompt: prompt, prompt_optimizer: true } });
+        feat: switch to luma ray image to video
+        const output: any = await replicate.run("luma/ray-1-6", { input: { prompt: prompt, start_image_url: imageUrl, aspect_ratio: "16:9" } }); const finalUrl = typeof output === 'string' ? output : (output?.url || output[0] || output); return finalUrl;
 
         if (Array.isArray(output) && output.length > 0) {
           generatedVideoUrl = String(output[0]);
