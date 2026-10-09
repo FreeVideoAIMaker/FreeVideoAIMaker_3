@@ -841,17 +841,8 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
     if (hasReplicateAuth) {
       try {
         console.log(`[Replicate GPU] Dispatching prompt to zeroscope-v2-xl: "${prompt.slice(0, 50)}..."`);
-        const output: any = await replicate.run(
-          "bytedance/minimax-video-01",
-          {
-            input: {
-                prompt: prompt,
-                  prompt_optimizer: true
-                  }
-
-            },
-          }
-        );
+        const output: any = await replicate.run("bytedance/minimax-video-01", { input: { prompt: prompt, prompt_optimizer: true } });
+        
 
         if (Array.isArray(output) && output.length > 0) {
           generatedVideoUrl = String(output[0]);
