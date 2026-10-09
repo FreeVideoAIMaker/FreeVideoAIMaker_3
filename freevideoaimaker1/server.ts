@@ -7,8 +7,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import Replicate from 'replicate';
-import cors from 'cors';
-app.use(cors());
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
