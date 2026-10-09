@@ -842,17 +842,13 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
       try {
         console.log(`[Replicate GPU] Dispatching prompt to zeroscope-v2-xl: "${prompt.slice(0, 50)}..."`);
         const output: any = await replicate.run(
-          "anotherjesse/zeroscope-v2-xl:9f743455d9c03e8d052d13036217465317c4717f2a74c0d1838d56b4dec41030",
+          "bytedance/minimax-video-01",
           {
             input: {
-              prompt,
-              negative_prompt: negativePrompt || undefined,
-              num_frames: 24,
-              fps: 12,
-              width,
-              height,
-              guidance_scale: 17.5,
-              num_inference_steps: 40,
+                prompt: prompt,
+                  prompt_optimizer: true
+                  }
+
             },
           }
         );
@@ -874,10 +870,10 @@ const handleDirectVideoGeneration = async (req: Request, res: Response) => {
     // High-Fidelity Fallback if Replicate token is pending or during local sandbox preview
     if (!generatedVideoUrl) {
       const fallbackCatalog = [
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
-        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        'https://googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+        'https://googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        'https://googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
+        'https://googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
       ];
       const promptHashNum = prompt.split('').reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0);
       generatedVideoUrl = fallbackCatalog[promptHashNum % fallbackCatalog.length];
