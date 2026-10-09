@@ -1,0 +1,48 @@
+{
+  "users": [],
+  "videos": [],
+  "auditLogs": [],
+  "visitorRecords": [],
+  "botRequestsBlocked": 0,
+  "siteConfig": {
+    "siteName": "FreeVideoAIMaker",
+    "heroTitle": "Transform Multiple Photos & Prompts into Cinematic AI Videos",
+    "heroSubtitle": "Next-generation neural video synthesis with multi-image keyframing, dynamic camera movement, and zero watermarks. 100% free with daily creation quotas.",
+    "heroCtaText": "Launch AI Video Studio",
+    "noticeBannerText": "✨ Version 2.4 Live: Multi-image sequence interpolation & 60FPS motion blur enabled!",
+    "isNoticeBannerVisible": true,
+    "aiEngineName": "FreeVideoAIMaker DeepMotion Core v2.4",
+    "dailyUserLimit": 4,
+    "videoRetentionHours": 24,
+    "smtp": {
+      "host": "",
+      "port": 587,
+      "user": "",
+      "pass": "",
+      "from": "noreply@freevideoaimaker.com"
+    },
+    "theme": {
+      "accentColor": "cyan",
+      "neonIntensity": "high",
+      "lightModeFontDarkness": "maximum"
+    },
+    "sectionVisibility": {
+      "hero": true,
+      "studio": true,
+      "showcase": true,
+      "features": true,
+      "faq": true,
+      "sponsorBanner": true
+    },
+    "ads": {
+      "headerAdEnabled": true,
+      "sidebarAdEnabled": true,
+      "showcaseAdEnabled": true,
+      "completionAdEnabled": true,
+      "googleAdSenseCode": "",
+      "cryptoAdNetwork": "a-ads",
+      "cryptoAdUnitId": "a-ads-freevideoaimaker",
+      "customAdSnippet": ""
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مُنسق ومُطهر المستندات بالذكاء الاصطناعي</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .box { max-width: 650px; width: 100%; background: #1e293b; padding: 35px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid #334155; }
+        h2 { text-align: center; color: #38bdf8; font-size: 22px; margin-bottom: 25px; font-weight: bold; }
+        label { font-weight: 600; color: #94a3b8; display: block; margin-top: 15px; font-size: 14px; }
+        input, select, button { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #475569; border-radius: 10px; box-sizing: border-box; background: #334155; color: white; font-size: 14px; }
+        button { background: linear-gradient(135deg, #0ea5e9, #2563eb); border: none; font-weight: bold; cursor: pointer; margin-top: 20px; box-shadow: 0 4px 14px rgba(14,165,233,0.4); }
+        .output { max-width: 850px; margin: 20px auto; display: none; width: 100%; color: #1e293b; }
+        .loading { text-align: center; color: #38bdf8; font-weight: bold; display: none; margin-top: 15px; }
+        @media print { .no-print { display: none !important; } body { background: white; padding: 0; } }
+    </style>
+</head>
+<body>
+    <div id="setup" class="box no-print">
+        <h2>🏛️ مُنسق المستندات الملكي بذكاء Llama السحابي</h2>
+        <label>1. ارفع ملف المحادثة المنسوخ من الـ AI (.txt):</label>
+        <input type="file" id="fileInput" accept=".txt">
+        <label>2. وجه النمط الجمالي الفاخر:</label>
+        <select id="themeSelect">
+            <option value="premium">💡 ثيم الشرح والملاحظات والأمثلة الملونة الفخمة</option>
+            <option value="goethe">📝 ثيم امتحانات معهد جوته والمطابقة الحديثة</option>
+        </select>
+        <button onclick="sendToAiCloud()">⚡ إطلاق الذكاء الاصطناعي وتصميم الملف</button>
+        <div id="loadingStatus" class="loading">⏳ جاري الاتصال بالسحابة وتطهير وتصميم المستند الفاخر... قد يستغرق ذلك بضع ثوانٍ...</div>
+    </div>
+    <div id="output" class="output"></div>
+
+    <script>
+        function sendToAiCloud() {
+            const inp = document.getElementById("fileInput");
+            const th = document.getElementById("themeSelect").value;
+            const loader = document.getElementById("loadingStatus");
+            if (!inp.files[0]) return alert("الرجاء اختيار ملف النص أولاً!");
+            
+            loader.style.display = "block";
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const rawText = e.target.result;
+                const themeRule = th === "premium" ? "صمم كروت شرح ملونة عائمة فاخرة، الملاحظات بخلفية صفراء وحواف مستديرة والأمثلة بخلفية خضراء." : "صمم كروت امتحانات معهد جوته الفخمة، مع إضافة خيارات تفاعلية [ ] Richtig و [ ] Falsch بجانب كل جملة أو سؤال مرقّم.";
+                
+                const prompt = `أنت مهندس تصميم مستندات محترف. طهّر هذا النص تماماً من حشو محادثات الـ AI والترحيبات والرموز بين الأقواس المربعة. قسّمه كاملاً داخل كروت عائمة فاخرة وفاخرة جداً باستخدام كود HTML مع ستايلات CSS مدمجة بداخل الأوسمة. قاعدة صارمة: الألماني يسار (direction: ltr; text-align: left;) والعربي يمين (direction: rtl; text-align: right;). \${themeRule} أضف زر طباعة فاخر في نهاية الصفحة يستدعي دالة window.print(). أخرج كود الـ HTML الصافي الفاخر فقط بدون أي مقدمات أو علامات \`\`\`. النص: \${rawText}`;
+
+                // الاتصال المباشر والسريع بالسحابة العامة المفتوحة والمجانية تماماً بدون مفتاح أو تسجيل
+                fetch("https://chutes.ai", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "meta-llama/Meta-Llama-3-70B-Instruct",
+                        messages: [{ role: "user", content: prompt }],
+                        temperature: 0.2
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    const htmlOutput = data.choices[0].message.content.strip || data.choices[0].message.content;
+                    document.getElementById("setup").style.display = "none";
+                    const out = document.getElementById("output");
+                    out.innerHTML = htmlOutput;
+                    out.style.display = "block";
+                    document.body.style.background = "#f0f4f8";
+                })
+                .catch(err => {
+                    alert("فشل الاتصال بالسحابة، تأكد من اتصال الإنترنت بهاتفك.");
+                    loader.style.display = "none";
+                });
+            };
+            reader.readAsText(inp.files[0]);
+        }
+    </script>
+</body>
+</html>

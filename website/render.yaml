@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: freevideoaimaker
+    env: node
+    plan: free
+    region: frankfurt # or oregon / ohio
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HF_TOKEN
+        sync: false # Set your Hugging Face token securely in Render dashboard
+      - key: MONGODB_URI
+        sync: false # Optional: MongoDB Atlas connection string
+      - key: ADMIN_PASSWORD
+        generateValue: true
