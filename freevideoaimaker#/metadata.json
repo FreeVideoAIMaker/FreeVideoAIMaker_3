@@ -1,0 +1,6 @@
+{
+  "name": "FreeVideoAIMaker",
+  "description": "Free AI Video Generator from images and prompts with high-definition rendering, multi-image storyboard support, and zero watermarks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

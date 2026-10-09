@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --neon-cyan: #06b6d4;
+    --neon-purple: #a855f7;
+    --neon-emerald: #10b981;
+    --neon-rose: #f43f5e;
+    --neon-amber: #f59e0b;
+  }
+
+  /* High-Contrast Light Mode Optimization */
+  body.light-mode {
+    background-color: #f8fafc;
+    color: #0f172a; /* Extra-dark slate for ultra-crisp legibility */
+  }
+
+  body.light-mode h1,
+  body.light-mode h2,
+  body.light-mode h3,
+  body.light-mode h4,
+  body.light-mode p,
+  body.light-mode span,
+  body.light-mode label {
+    color: #090d16; /* Deep black-slate */
+  }
+
+  /* Dark Mode Default */
+  body.dark-mode {
+    background-color: #030712;
+    color: #f1f5f9;
+  }
+}
+
+/* Neon Glow Utilities */
+.neon-glow-cyan {
+  box-shadow: 0 0 20px -3px rgba(6, 182, 212, 0.45), 0 0 8px rgba(6, 182, 212, 0.3);
+}
+
+.neon-glow-purple {
+  box-shadow: 0 0 20px -3px rgba(168, 85, 247, 0.45), 0 0 8px rgba(168, 85, 247, 0.3);
+}
+
+.neon-glow-emerald {
+  box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.45), 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.neon-glow-rose {
+  box-shadow: 0 0 20px -3px rgba(244, 63, 94, 0.45), 0 0 8px rgba(244, 63, 94, 0.3);
+}
+
+.neon-glow-amber {
+  box-shadow: 0 0 20px -3px rgba(245, 158, 11, 0.45), 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+.neon-border-cyan {
+  border-color: rgba(6, 182, 212, 0.6);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.35) inset, 0 0 10px rgba(6, 182, 212, 0.2);
+}
+
+/* Cyber grid background */
+.cyber-grid-dark {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.cyber-grid-light {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.7);
+}
